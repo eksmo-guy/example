@@ -79,19 +79,21 @@ build-backend = "setuptools.build_meta"
 [tool.pydoclint]
 style = "google"
 
-# Эквиваленты strictness="long" — включаем все проверки
-check-return = true
-check-yields = true
-check-params = true
-check-exceptions = true
-check-raises = true
-
-# Аналог ignore_return_without_description
-ignore-return-section = true
-
-# Дополнительные опции (опционально)
-allow-init-docstring = true
-ignore-private = false
-ignore-magic = false
-
+# === Проверка параметров ===
+check-params = true               # Все аргументы должны быть в Args
+require-return = true             # Требовать Returns, если return-annotation не None
+require-param-type = false        # Не требовать типы в Args (как darglint)
 arg-type-hints-in-docstring = false
+
+# === Проверка Returns ===
+check-return = true               # Проверяет соответствие Returns сигнатуре
+ignore-return-section = false     # Требовать наличие Returns, запрещает пустую секцию
+
+# === Проверка Raises ===
+check-raises = true               # Требовать Raises (если функция действительно может кидать)
+
+# === Поведение, похожее на darglint ===
+allow-init-docstring = true       # Разрешить короткие докстринги у __init__
+ignore-private = false            # Проверять _приватные методы тоже
+ignore-magic = false              # Проверять __magic__ методы
+skip-checking-short-docstrings = false  # Не пропускать однострочные докстринги
