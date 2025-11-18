@@ -75,3 +75,23 @@ skip-magic-trailing-comma = false
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+[tool.pydoclint]
+style = "google"
+
+# Эквиваленты strictness="long" — включаем все проверки
+check-return = true
+check-yields = true
+check-params = true
+check-exceptions = true
+check-raises = true
+
+# Аналог ignore_return_without_description
+ignore-return-section = true
+
+# Дополнительные опции (опционально)
+allow-init-docstring = true
+ignore-private = false
+ignore-magic = false
+
+arg-type-hints-in-docstring = false
