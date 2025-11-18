@@ -1,0 +1,32 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v6.0.0"
+    hooks:
+      - id: debug-statements
+        language_version: python3.13
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.12.10"
+    hooks:
+      - id: ruff-format
+        types_or: [ python, pyi, jupyter ]
+
+      - id: ruff
+        args: [ --fix, --exit-non-zero-on-fix ]
+        language_version: python3.13
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.17.1"
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - "pydantic>=2.7.3"
+        args: [ --no-strict-optional, --ignore-missing-imports, --python-version=3.13 ]
+
+  - repo: local
+    hooks:
+      - id: precheck
+        name: Project precheck
+        entry: python3 eksmo_src/precheck.py
+        language: system
+        pass_filenames: false
